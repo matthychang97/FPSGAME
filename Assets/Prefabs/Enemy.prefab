@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ada91c1169cf5ba45b4a19cf91f158a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TargetHealth
-  maxHealth: 10
+  maxHealth: 5
   points: 5
 --- !u!195 &3478938231383293807
 NavMeshAgent:
