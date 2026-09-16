@@ -7699,6 +7699,10 @@ PrefabInstance:
       propertyPath: gun
       value: 
       objectReference: {fileID: 418105737}
+    - target: {fileID: 3040590740086497711, guid: 19ac58293e68edc44b8c030edac25881, type: 3}
+      propertyPath: pitchRange
+      value: 85
+      objectReference: {fileID: 0}
     - target: {fileID: 4063418897475085727, guid: 19ac58293e68edc44b8c030edac25881, type: 3}
       propertyPath: m_LocalPosition.x
       value: -43.6
