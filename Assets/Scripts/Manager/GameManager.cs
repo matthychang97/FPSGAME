@@ -183,7 +183,7 @@ public class GameManager : MonoBehaviour
 
         if (gamerTimer <= 0)
         {
-            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.lockState = CursorLockMode.None;
             //Debug.Log("Game Over Score: " + score);
             messageText.text = "Game Over! Score: " + score;
             messageText.text = "Press Enter to play again!";

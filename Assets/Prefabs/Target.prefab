@@ -127,5 +127,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ada91c1169cf5ba45b4a19cf91f158a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TargetHealth
-  maxHealth: 5
+  maxHealth: 1
   points: 1
