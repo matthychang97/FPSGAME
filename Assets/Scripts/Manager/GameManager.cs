@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject resetButton; // drag your button GameObject here in Inspector
 
+    public Image crosshair;
+
     public enum GameState
     {
         Start,
@@ -69,8 +71,6 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Confined;
-
         player.SetActive(false);
         worldCamera.gameObject.SetActive(true);
         for (int i = 0; i < targets.Length; i++)
@@ -95,6 +95,7 @@ public class GameManager : MonoBehaviour
         if(Input.GetKeyUp(KeyCode.Escape))
         {
             Application.Quit();
+            Cursor.lockState = CursorLockMode.None;
         }
 
         switch(gameState)
@@ -112,7 +113,7 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
-    //Ramdonly activates a target
+    //Randomly activates a target
     private void ActivateRandomTarget()
     {
         int randomIndex = Random.Range(0, targets.Length);
@@ -148,6 +149,8 @@ public class GameManager : MonoBehaviour
 
     private void GameStateStart()
     {
+        crosshair.enabled = false;
+
         startTimer -= Time.deltaTime;
 
         messageText.text = "Get Ready " + (int)(startTimer + 1);
@@ -172,6 +175,8 @@ public class GameManager : MonoBehaviour
 
     private void GameStatePlaying()
     {
+        crosshair.enabled = true;
+
         gamerTimer -= Time.deltaTime;
         int seconds = Mathf.RoundToInt(gamerTimer);
         timerText.text = string.Format("Time: {0:D2}:{1:D2}", (seconds / 60), (seconds % 60));
@@ -205,7 +210,8 @@ public class GameManager : MonoBehaviour
     }
     private void GameStateGameOver()
     {
-        if(Input.GetKeyUp(KeyCode.Return))
+        crosshair.enabled = false;
+        if (Input.GetKeyUp(KeyCode.Return))
         {
             gameState = GameState.Start;
             timerText.text = "";
@@ -213,5 +219,3 @@ public class GameManager : MonoBehaviour
         }
     }
 }
-
-

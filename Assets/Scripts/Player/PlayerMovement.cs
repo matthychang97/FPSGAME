@@ -31,6 +31,11 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 startPosition;
     private Quaternion startRotation;
 
+    // Sprinting (courtesy of Elliot)
+    public float sprintSpeed = 7f;
+    public float sprintFOV = 70f;
+    private bool isSprinting;
+
     public GameObject gun;
     void Awake ()
     { 
@@ -64,10 +69,12 @@ public class PlayerMovement : MonoBehaviour
         strafeInputValue = Input.GetAxisRaw("Horizontal");
         jumpInput = Input.GetButtonDown("Jump");
         zoomInput = Input.GetButton("Fire2"); //right mouse button
+        isSprinting = Input.GetButton("Sprint") && forwardInputValue > 0;
 
         Movement();
         JumpAndGravity();
-        CameraMovement();
+        if (Cursor.lockState == CursorLockMode.Locked)
+            CameraMovement();
         Zoom();
     }
     void CameraMovement()
@@ -85,15 +92,19 @@ public class PlayerMovement : MonoBehaviour
 
     void Zoom()
     {
-        targetFOV = zoomInput ? zoomFOV : defaultFOV;
+        targetFOV = zoomInput ? (isSprinting ? defaultFOV : zoomFOV) : (isSprinting ? sprintFOV : defaultFOV);
         firstPersonCam.fieldOfView = Mathf.Lerp(firstPersonCam.fieldOfView, targetFOV, zoomSpeed * Time.deltaTime);
+
+        // Adjust gun transform
         Vector3 targetPos = zoomInput ? new Vector3(0f, -0.226999998f, 0.624000013f) : new Vector3(0.521000028f, -0.333000004f, 0.624000013f);
         gun.transform.localPosition = Vector3.Lerp(gun.transform.localPosition,targetPos, zoomSpeed * Time.deltaTime);
         gun.transform.localRotation = Quaternion.Lerp(gun.transform.localRotation,Quaternion.Euler(0,-90,0),10*Time.deltaTime);
     }
     void Movement()
     {
-        Vector3 direction = (transform.forward * forwardInputValue + transform.right * strafeInputValue).normalized * movementSpeed * Time.deltaTime;
+        float currentSpeed = isSprinting ? sprintSpeed : movementSpeed;
+
+        Vector3 direction = (transform.forward * forwardInputValue + transform.right * strafeInputValue).normalized * currentSpeed * Time.deltaTime;
 
         //Add physics using Vector3s up direction (World coordinates) as the direction of gravity
         direction += Vector3.up * verticalVelocity * Time.deltaTime;

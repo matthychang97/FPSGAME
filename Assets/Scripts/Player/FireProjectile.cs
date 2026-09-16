@@ -17,11 +17,15 @@ public class FireProjectile : MonoBehaviour
     {
         if(Input.GetButtonDown("Fire1"))
         {
-            // Gun sounds + particles (by Elliot)
+            // Gun sounds + particles + kickback (by Elliot)
             gunSounds.pitch = Random.Range(0.9f, 1.1f);
             gunSounds.PlayOneShot(gunSounds.clip);
             gunParticles.Emit(1);
             gun.transform.Rotate(0, 0, 20, Space.Self);
+
+            // Lock the cursor again
+            Cursor.lockState = CursorLockMode.Locked;
+
             GameObject newProjectile = Instantiate(projectilePrefab, spawnTransform.position, spawnTransform.rotation);
             newProjectile.GetComponent<Rigidbody>().AddForce(newProjectile.transform.forward * force);
         }
