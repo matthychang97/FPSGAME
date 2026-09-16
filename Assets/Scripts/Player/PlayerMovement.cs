@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 startPosition;
     private Quaternion startRotation;
 
+    public GameObject gun;
     void Awake ()
     { 
         characterController = GetComponent<CharacterController>();
@@ -86,6 +87,9 @@ public class PlayerMovement : MonoBehaviour
     {
         targetFOV = zoomInput ? zoomFOV : defaultFOV;
         firstPersonCam.fieldOfView = Mathf.Lerp(firstPersonCam.fieldOfView, targetFOV, zoomSpeed * Time.deltaTime);
+        Vector3 targetPos = zoomInput ? new Vector3(0f, -0.226999998f, 0.624000013f) : new Vector3(0.521000028f, -0.333000004f, 0.624000013f);
+        gun.transform.localPosition = Vector3.Lerp(gun.transform.localPosition,targetPos, zoomSpeed * Time.deltaTime);
+        gun.transform.localRotation = Quaternion.Lerp(gun.transform.localRotation,Quaternion.Euler(0,-90,0),10*Time.deltaTime);
     }
     void Movement()
     {
