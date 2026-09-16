@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 51455700}
   - component: {fileID: 51455701}
   m_Layer: 0
-  m_Name: Walls
+  m_Name: Wals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3798,7 +3798,7 @@ GameObject:
   - component: {fileID: 946118890}
   - component: {fileID: 946118891}
   m_Layer: 0
-  m_Name: Obstacles
+  m_Name: Obsticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7313,14 +7313,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4211784621099818621, guid: 19ac58293e68edc44b8c030edac25881, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7200989010373774274, guid: 19ac58293e68edc44b8c030edac25881, type: 3}
-      propertyPath: m_Name
-      value: Gun
-      objectReference: {fileID: 0}
     - target: {fileID: 7352430205657858395, guid: 19ac58293e68edc44b8c030edac25881, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.7
@@ -7349,8 +7341,7 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4211784621099818621, guid: 19ac58293e68edc44b8c030edac25881, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 2344839171486208050, guid: 19ac58293e68edc44b8c030edac25881, type: 3}
     m_AddedGameObjects: []
@@ -7435,7 +7426,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FireProjectile
   projectilePrefab: {fileID: 1164943728256480414, guid: 6eaa6f9a3f559954aaefe82506d949d8, type: 3}
   spawnTransform: {fileID: 801649957}
-  force: 500
+  force: 2000
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
